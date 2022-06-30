@@ -1,5 +1,6 @@
 import { it, expect, vi } from "vitest";
 import { promises as fs } from "fs";
+
 import writeData from "./io";
 
 vi.mock("fs");
@@ -19,7 +20,18 @@ it("should execute the writeFile method", () => {
 
   writeData(testData, testFileName);
 
-  //   return expect(writeData(testData, testFileName)).resolves.toBeUndefined();
+    // return expect(writeData(testData, testFileName)).resolves.toBeUndefined();
   //   expect(fs.writeFile).toBeCalled();
   expect(fs.writeFile).toBeCalledWith(testFileName, testData);
 });
+
+it("should return a promise that resloves to on value if called correctly", () => {
+    const testData = "Test";
+    const testFileName = "test.txt";
+  
+    writeData(testData, testFileName);
+  
+      return expect(writeData(testData, testFileName)).resolves.toBeUndefined();
+    //   expect(fs.writeFile).toBeCalled();
+  //   expect(fs.writeFile).toBeCalledWith(testFileName, testData);
+  });
